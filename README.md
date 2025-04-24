@@ -8,34 +8,27 @@ Todo está empaquetado con **Docker Compose** aplicando buenas prácticas de seg
 
 ## 1 . Requisitos
 
-| Herramienta | Versión mínima |
-|-------------|----------------|
-| Docker Desktop (Windows / macOS / Linux) | 4.x (Compose v2 incluido) |
-| Git | opcional (para clonar) |
+| Herramienta  | Versión mínima |
+|--------------|----------------|
+| Docker       | 20.10.x        |
+| Docker Compose| v2.x          |
+| Git          | opcional(para clonar)|
 
-> **Windows**: Docker Desktop debe estar en modo **Linux containers**.
+> **Windows**: Docker Desktop debe estar en modo **Linux containers**(WLS2). 
 
 ---
 
-## 2 . Preparar variables de entorno
+##  Preparar variables de entorno
 
 El proyecto **nunca** incluye credenciales reales.
-Copia el fichero de ejemplo y, si lo deseas, ajusta los valores:
 
-```bash
-cp .env.example .env        # Linux/macOS/WSL/Git-Bash
-# o
-copy .env.example .env      # PowerShell/CMD
-
-# .env está en .gitignore -> nunca se sube
-
-## 3 . Puesta en marcha rápida
+## Puesta en marcha rápida
 
 # 1. Clonar (o descomprimir) el proyecto
 git clone https://github.com/Shaston/todo-list-app.git
 cd todo-list-app
 
-# 2. Copiar .env (ver paso anterior)
+# 2. Copiar .env
 cp .env.example .env        # Linux/macOS/WSL/Git-Bash
 # o
 copy .env.example .env      # PowerShell/CMD
@@ -54,7 +47,19 @@ docker compose down
 #Reconstruir solo la imagen de la app
 docker compose build app
 
-## 5 · Medidas de seguridad aplicadas SDLC
+todo-list-app/
+├── src/                 # Código de la app Node.js
+│   ├── routes/          # Endpoints (add, get, delete, update)
+│   ├── persistence/     # Drivers de base de datos (MySQL/SQLite)
+│   └── static/          # HTML, JS y CSS frontend
+├── spec/                # Pruebas unitarias
+├── .env.example         # Plantilla de credenciales
+├── Dockerfile           # Imagen de la app
+├── compose.yaml         # Definición multi-contenedor
+└── README.md
+
+
+## Medidas de seguridad aplicadas SDLC
 
 ### 1. Planificación & Diseño
 - Arquitectura **micro-servicios**: contenedor `app` separado de `mysql`, comunicación solo por red interna Docker.
