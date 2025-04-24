@@ -1,0 +1,13 @@
+# dependencias Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# artefactos
+*.tar
+*.zip
+
+# directorios y archivos de sistema/IDE
+.vscode
+.DS_Store
+.envpackage-lock.json

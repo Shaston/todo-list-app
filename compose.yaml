@@ -1,0 +1,34 @@
+services:
+  app:
+    build: .
+    container_name: todo-app
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: mysql
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      # DATA_DIR: /app/data
+    volumes:
+      - todo-data:/app/data
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: todo-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    # ports:
+    #   - "3306:3306"
+
+# Volúmenes persistentes
+volumes:
+  mysql-data:
+  todo-data:
