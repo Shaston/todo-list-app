@@ -47,17 +47,6 @@ docker compose down
 #Reconstruir solo la imagen de la app
 docker compose build app
 
-todo-list-app/
-├── src/                 # Código de la app Node.js
-│   ├── routes/          # Endpoints (add, get, delete, update)
-│   ├── persistence/     # Drivers de base de datos (MySQL/SQLite)
-│   └── static/          # HTML, JS y CSS frontend
-├── spec/                # Pruebas unitarias
-├── .env.example         # Plantilla de credenciales
-├── Dockerfile           # Imagen de la app
-├── compose.yaml         # Definición multi-contenedor
-└── README.md
-
 
 ## Medidas de seguridad aplicadas SDLC
 
